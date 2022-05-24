@@ -46,9 +46,6 @@ dropElm.addEventListener("drop",function(e){
         table.classList.add("d-none");
     }
 
-
-    let files = [...e.dataTransfer.files];
-
     
 })
 
@@ -97,11 +94,11 @@ function uploadFiles (files){
                     let removeI = e.target.parentNode.parentNode.rowIndex;
                     tbody.deleteRow(removeI-1);  
                 
-                for (let u = 0; u < tbody.rows.length; u++) {
-                    if(tbody.rows.item(u).cells.item(0).innerText != u){
-                        tbody.rows.item(u).cells.item(0).innerText = u+1;
+                    for (let u = 0; u < tbody.rows.length; u++) {
+                        if(tbody.rows.item(u).cells.item(0).innerText != u){
+                            tbody.rows.item(u).cells.item(0).innerText = u+1;
+                        }
                     }
-                }
 
                 if(tbody.rows.length > 0){
                     table.classList.remove("d-none")
@@ -113,7 +110,7 @@ function uploadFiles (files){
             })
             })
 
-            
+            setInterval(Order(),1);
 
             if(tbody.rows.length > 0){
                 // table.style.cssText += "visibility:visible;";
@@ -128,6 +125,15 @@ function uploadFiles (files){
     }
 }
 
+function Order() {
+    for (let u = 0; u < tbody.rows.length; u++) {
+        if(tbody.rows.item(u).cells.item(0).innerText != u){
+            tbody.rows.item(u).cells.item(0).innerText = u+1;
+        }
+    }
+}
+
+//v1
 
 // [...e.dataTransfer.files].forEach(file=>{
 //     let reader = new FileReader();
