@@ -6,6 +6,10 @@ let tbody = table.querySelector("tbody");
 
 let th = tbody.querySelector("th");
 
+let upload = document.querySelector(".fa-cloud-arrow-up");
+
+console.log(upload);
+
 let removes = "";
 
 let id=1;
@@ -14,21 +18,41 @@ let allfiles = [];
 
 dropElm.ondragover =(e)=>e.preventDefault();
 
-if(tbody.innerHTML.trim() == ""){
-    table.style.cssText += "visibility:hidden;";
+if(tbody.rows.length > 0){
+    table.classList.remove("d-none")
 }
+else{
+    table.classList.add("d-none");
+}
+
+upload.addEventListener("click",function(){
+    document.querySelector(".browse").click();
+})
+
+document.querySelector(".browse").addEventListener("change",function(e){
+    uploadFiles(e.target.files);
+})
 
 
 dropElm.addEventListener("drop",function(e){
     e.preventDefault();
 
-    if(tbody.innerHTML.trim() == ""){
-        table.style.cssText += "visibility:hidden;";
+    uploadFiles([...e.dataTransfer.files])
+
+    if(tbody.rows.length > 0){
+        table.classList.remove("d-none")
+    }
+    else{
+        table.classList.add("d-none");
     }
 
 
     let files = [...e.dataTransfer.files];
 
+    
+})
+
+function uploadFiles (files){
     for (let i = 0; i < files.length; i++) {
 
         allfiles.push(files[i].name);
@@ -78,22 +102,33 @@ dropElm.addEventListener("drop",function(e){
                         tbody.rows.item(u).cells.item(0).innerText = u+1;
                     }
                 }
+
+                if(tbody.rows.length > 0){
+                    table.classList.remove("d-none")
+                }
+                else{
+                    table.classList.add("d-none");
+                }
                 
             })
             })
 
             
 
-            if(tbody.innerHTML.trim() != ""){
-                table.style.cssText += "visibility:visible;";
+            if(tbody.rows.length > 0){
+                // table.style.cssText += "visibility:visible;";
+                table.classList.remove("d-none")
             }
-            else if(tbody.innerHTML.trim() == ""){
-                table.style.cssText += "visibility:hidden;";
+            else{
+                // table.style.cssText += "visibility:hidden;";
+                table.classList.add("d-none");
             }
         })
         reader.readAsDataURL(files[i]);
     }
-})
+}
+
+
 // [...e.dataTransfer.files].forEach(file=>{
 //     let reader = new FileReader();
 //     reader.addEventListener("loadend",function(e){
