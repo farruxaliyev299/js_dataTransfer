@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #1c2128;
+}
+
+.drop-elm {
+  width: 80%;
+  height: 300px;
+  border: 5px dashed grey;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 100px auto;
+  cursor: pointer;
+}
+
+.drop-elm i {
+  font-size: 50px;
+  color: white;
+}
+
+.drop-elm:hover {
+  -webkit-filter: brightness(120%);
+          filter: brightness(120%);
+  background-color: #272e36;
+}
+
+table {
+  color: white !important;
+}
+
+table i {
+  color: white;
+  font-size: 25px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=main.css.map */
